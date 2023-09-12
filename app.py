@@ -18,6 +18,7 @@
         # you can also copy it in terminal: pbcopy < ~/.ssh/myKey.pub
 # go to your https://github.com/settings/keys - click 'Add New SSH Key' 
 # name it something and paste the public key in the second field and 'add'
+# run this to start an ssh-agent in terminal: eval "$(ssh-agent -s)"
 # you can now write to your github from your computer
 
 # create a new repo, clone it from your command line and enter into it's folder
@@ -26,10 +27,10 @@
 
 username = 'BjornHammars'
 email = 'bjorn.hammars@gmail.com'
-startDaysAgo = 3
+startDaysAgo = 300
 endDaysAgo = 1
 minCommitsPerDay = 0
-maxCommitsPerDay = 3
+maxCommitsPerDay = 2
 
 # run this code in terminal: python3 app.py
 # if there are no errors you should see your repo filled with commits
@@ -63,6 +64,7 @@ for i in range(endDaysAgo, startDaysAgo):
         with open('file.txt', 'w') as file:
                 file.write(d)
         os.system('git add file.txt')
+        os.system('git ignore app.py')
         
         cmd = f'GIT_AUTHOR_DATE={formated} GIT_COMMITTER_DATE={formated} git commit --author="{username} <{email}>" -m "{formated}"'
         os.system(cmd)        
